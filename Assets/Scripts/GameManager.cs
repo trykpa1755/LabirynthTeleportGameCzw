@@ -14,6 +14,12 @@ public class GameManager : MonoBehaviour
     bool endGame = false;
     bool win = false;
 
+    public int points = 0;
+
+    public int redKey = 0;
+    public int greenKey = 0;
+    public int goldKey = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -100,6 +106,21 @@ public class GameManager : MonoBehaviour
     }
 
 
+    public void AddPoints(int point)
+    {
+        points += point;
+    }
+
+    public void AddTime(int addTime)
+    {
+        timeToEnd += addTime;
+    }
+
+    public void FreezeTime(int freeze)
+    {
+        CancelInvoke("Stopper");
+        InvokeRepeating("Stopper", freeze, 1);
+    }
 
 
 
