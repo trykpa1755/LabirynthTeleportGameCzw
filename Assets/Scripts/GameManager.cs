@@ -37,10 +37,21 @@ public class GameManager : MonoBehaviour
 
     }
 
+    void PickUpCheck()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            Debug.Log("Actual Time: " + timeToEnd);
+            Debug.Log("Key red: " + redKey + " green: " + greenKey + " gold: " + goldKey);
+            Debug.Log("Points: " + points);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
         PauseCheck();
+        PickUpCheck();
     }
 
     void Stopper()
@@ -122,6 +133,21 @@ public class GameManager : MonoBehaviour
         InvokeRepeating("Stopper", freeze, 1);
     }
 
+    public void AddKey(KeyColor color)
+    {
+        if(color == KeyColor.Gold)
+        {
+            goldKey++;
+        }
+        else if(color == KeyColor.Red)
+        {
+            redKey++;
+        }
+        else if (color == KeyColor.Green)
+        {
+            greenKey++;
+        }
 
+    }
 
 }
