@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3208217244204739877
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8873567075176332809}
+  - component: {fileID: 2125246142217588884}
+  m_Layer: 0
+  m_Name: Labirynth
+  m_TagString: Wall
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8873567075176332809
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3208217244204739877}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.0667174, y: 4.8327456, z: 84.94144}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2125246142217588884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3208217244204739877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f56ca9f3a7fd30a4491cae088c816e23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  map: {fileID: 2800000, guid: 3e842d63cf283db4cb4a57d318e2955c, type: 3}
+  colorMappings:
+  - color: {r: 1, g: 1, b: 1, a: 1}
+    prefab: {fileID: 3401129726049929677, guid: bc21ac1fb4abf0c41aadaac8eadadb35, type: 3}
+  - color: {r: 0, g: 1, b: 0, a: 1}
+    prefab: {fileID: 1665274759208437419, guid: 96e442767e5dbb344a44dc6a3860e12d, type: 3}
+  - color: {r: 1, g: 0, b: 0, a: 1}
+    prefab: {fileID: 401024557553618686, guid: b65a09e3beb9791478b26f9b053b04bc, type: 3}
+  - color: {r: 0, g: 0, b: 0, a: 1}
+    prefab: {fileID: 341916234060653346, guid: b55884dc5fa350a42b83be90f2b64ae8, type: 3}
+  offset: 5
+  material01: {fileID: 2100000, guid: 0adc3e7faf339f04f97edf3cec8464f6, type: 2}
+  material02: {fileID: 2100000, guid: da5eb365806d17a40a77cbbdecaca28e, type: 2}

@@ -20,6 +20,12 @@ public class GameManager : MonoBehaviour
     public int greenKey = 0;
     public int goldKey = 0;
 
+    AudioSource audioSource;
+    public AudioClip resumeClip;
+    public AudioClip pauseClip;
+    public AudioClip winClip;
+    public AudioClip loseClip;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +41,15 @@ public class GameManager : MonoBehaviour
             timeToEnd = 100;
         }
 
+        audioSource = GetComponent<AudioSource>();
+
+    }
+
+
+    public void PlayClip(AudioClip playClip)
+    {
+        audioSource.clip = playClip;
+        audioSource.Play();
     }
 
     void PickUpCheck()
@@ -75,6 +90,7 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame()
     {
+        PlayClip(pauseClip);
         Debug.Log("Pause Game");
         Time.timeScale = 0f;
         gamePaused = true;
@@ -82,6 +98,7 @@ public class GameManager : MonoBehaviour
 
     public void ResumeGame()
     {
+        PlayClip(resumeClip);
         Debug.Log("Resume Game");
         Time.timeScale = 1f;
         gamePaused = false;
@@ -104,14 +121,16 @@ public class GameManager : MonoBehaviour
 
 
     public void EndGame()
-    {
+    {        
         CancelInvoke("Stopper");
         if(win)
         {
+            PlayClip(winClip);
             Debug.Log("You win!!! Reload?");
         }
         else
         {
+            PlayClip(loseClip);
             Debug.Log("You Lose!!! Reload?");
         }
     }
