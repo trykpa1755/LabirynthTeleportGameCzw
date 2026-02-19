@@ -7,6 +7,7 @@ public class Freeze : PickUp
     public int freezeTime = 10;
     public override void Picked()
     {
+        GameManager.gameManager.PlayClip(pickClip);
         GameManager.gameManager.FreezeTime(freezeTime);
         Destroy(this.gameObject);
     }
