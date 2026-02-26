@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -26,6 +28,17 @@ public class GameManager : MonoBehaviour
     public AudioClip winClip;
     public AudioClip loseClip;
 
+    public Text timeText;
+    public Text goldKeyText;
+    public Text redKeyText;
+    public Text greenKeyText;
+    public Text crystalText;
+    public Image snowFlake;
+    public GameObject infoPanel;
+    public Text pauseEnd;
+    public Text reloadInfo;
+    public Text useInfo;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +46,7 @@ public class GameManager : MonoBehaviour
         {
             gameManager = this;
         }
-
+        Time.timeScale = 1f;
         InvokeRepeating("Stopper", 2, 1);
 
         if(timeToEnd <= 0)
@@ -42,7 +55,18 @@ public class GameManager : MonoBehaviour
         }
 
         audioSource = GetComponent<AudioSource>();
+        snowFlake.enabled = false;
+        timeText.text = timeToEnd.ToString();
+        infoPanel.SetActive(false);
+        pauseEnd.text = "Pause";
+        reloadInfo.text = "";
+        SetUseInfo("");
 
+    }
+
+    public void SetUseInfo(string info)
+    {
+        useInfo.text = info;
     }
 
 
@@ -67,12 +91,26 @@ public class GameManager : MonoBehaviour
     {
         PauseCheck();
         PickUpCheck();
+
+        if (endGame)
+        {
+            if (Input.GetKeyDown(KeyCode.Y))
+            {
+                SceneManager.LoadScene("LabTest");
+            }
+            if (Input.GetKeyDown(KeyCode.N))
+            {
+                Application.Quit();
+            }
+        }
     }
 
     void Stopper()
     {
         timeToEnd--;
-        Debug.Log("Time: " + timeToEnd + " s");
+        //Debug.Log("Time: " + timeToEnd + " s");
+        timeText.text = timeToEnd.ToString();
+        snowFlake.enabled = false;
 
         if (timeToEnd <= 0)
         {
@@ -91,7 +129,8 @@ public class GameManager : MonoBehaviour
     public void PauseGame()
     {
         PlayClip(pauseClip);
-        Debug.Log("Pause Game");
+        //Debug.Log("Pause Game");
+        infoPanel.SetActive(true);
         Time.timeScale = 0f;
         gamePaused = true;
     }
@@ -99,7 +138,8 @@ public class GameManager : MonoBehaviour
     public void ResumeGame()
     {
         PlayClip(resumeClip);
-        Debug.Log("Resume Game");
+        //Debug.Log("Resume Game");
+        infoPanel.SetActive(false);
         Time.timeScale = 1f;
         gamePaused = false;
     }
@@ -123,15 +163,21 @@ public class GameManager : MonoBehaviour
     public void EndGame()
     {        
         CancelInvoke("Stopper");
+        infoPanel.SetActive(true);
+        Time.timeScale = 0f;
         if(win)
         {
             PlayClip(winClip);
-            Debug.Log("You win!!! Reload?");
+            //Debug.Log("You win!!! Reload?");
+            pauseEnd.text = "You Win!!!";
+            reloadInfo.text = "Reload? Y/N";
         }
         else
         {
             PlayClip(loseClip);
-            Debug.Log("You Lose!!! Reload?");
+            //Debug.Log("You Lose!!! Reload?");
+            pauseEnd.text = "You Lose!!!";
+            reloadInfo.text = "Reload? Y/N";
         }
     }
 
@@ -139,16 +185,19 @@ public class GameManager : MonoBehaviour
     public void AddPoints(int point)
     {
         points += point;
+        crystalText.text = points.ToString();
     }
 
     public void AddTime(int addTime)
     {
         timeToEnd += addTime;
+        timeText.text = points.ToString();
     }
 
     public void FreezeTime(int freeze)
     {
         CancelInvoke("Stopper");
+        snowFlake.enabled = true;
         InvokeRepeating("Stopper", freeze, 1);
     }
 
@@ -157,16 +206,25 @@ public class GameManager : MonoBehaviour
         if(color == KeyColor.Gold)
         {
             goldKey++;
+            goldKeyText.text = points.ToString();
         }
         else if(color == KeyColor.Red)
         {
             redKey++;
+            redKeyText.text = points.ToString();
         }
         else if (color == KeyColor.Green)
         {
             greenKey++;
+            greenKeyText.text = points.ToString();
         }
 
+    }
+
+    public void WinGame()
+    {
+        win = true;
+        endGame = true;
     }
 
 }
