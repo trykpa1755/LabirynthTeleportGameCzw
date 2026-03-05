@@ -206,17 +206,17 @@ public class GameManager : MonoBehaviour
         if(color == KeyColor.Gold)
         {
             goldKey++;
-            goldKeyText.text = points.ToString();
+            goldKeyText.text = goldKey.ToString();
         }
         else if(color == KeyColor.Red)
         {
             redKey++;
-            redKeyText.text = points.ToString();
+            redKeyText.text = redKey.ToString();
         }
         else if (color == KeyColor.Green)
         {
             greenKey++;
-            greenKeyText.text = points.ToString();
+            greenKeyText.text = greenKey.ToString();
         }
 
     }
