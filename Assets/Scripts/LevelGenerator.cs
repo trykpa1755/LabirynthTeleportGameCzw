@@ -11,19 +11,6 @@ public class LevelGenerator : MonoBehaviour
     public Material material01;
     public Material material02;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     void GenerateTile(int x, int z)
     {
         //Pobieramy kolor pixela w pozycji x i y
